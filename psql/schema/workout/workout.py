@@ -16,6 +16,8 @@ class Workout(db.Model):
     ts_start = db.Column(db.DateTime(), nullable=False)
     ts_finish = db.Column(db.DateTime())
 
+    exercises = db.relationship('Exercise', backref='workout', lazy='joined')
+
     @property
     def start(self):
         return self.ts_start.strftime('%b %d %Y')

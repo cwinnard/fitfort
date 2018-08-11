@@ -1,2 +1,2 @@
-from .exercise import exercise
+from .exercise import Exercise
 from .workout import Workout
