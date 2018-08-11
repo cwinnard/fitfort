@@ -11,6 +11,9 @@ migrate = Migrate(app, db)
 
 import psql
 
+from fitflask.login.controller import loginBP
+app.register_blueprint(loginBP)
+
 @app.route('/')
 def index():
     return 'Hello World!'
