@@ -12,3 +12,8 @@ class Exercise(db.Model):
     id_workout = db.Column(db.Integer, db.ForeignKey('workout.workout.id'), nullable=False)
 
     sets = db.relationship('Set', backref='exercise', lazy='joined')
+
+    def serialize(self):
+        return {
+            'name': self.name
+        }

@@ -17,3 +17,15 @@ def start():
     db.session.add(workout)
     db.session.commit()
     return jsonify(workout.serialize())
+
+@workoutBP.route('/exercise/new', methods=['POST'])
+def new_exercise():
+    name = request.form.get('name')
+    workoutId = request.form.get('workoutId')
+    exercise = Exercise()
+    exercise.name = name
+    exercise.id_workout = workoutId
+    db.session.add(exercise)
+    db.session.commit()
+    return jsonify(exercise.serialize())
+
