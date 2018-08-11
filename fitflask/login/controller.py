@@ -1,8 +1,8 @@
-from flask import Blueprint, redirect, render_template, request, url_for
+from flask import Blueprint, jsonify, redirect, render_template, request, url_for
 from flask_login import current_user
 
 from fitflask import db
-#from .login_facilitator import LoginFacilitator
+from .login_facilitator import LoginFacilitator
 from psql.schema.master import User
 
 loginBP = Blueprint('login', __name__, url_prefix='/login')
@@ -11,12 +11,12 @@ loginBP = Blueprint('login', __name__, url_prefix='/login')
 def welcome():
     return 'Hello Login!'
 
-@loginBP.route('/login-user')
+@loginBP.route('/login-user', methods=['POST'])
 def log_user_in():
-    userName = request.args.get('username')
-    user = User.query.filter_by(user_name=userName).first()
-    #LoginFacilitator().log_user_in(user)
-    return 200
+    email = request.form.get('email')
+    user = User.query.filter_by(email=email).first()
+    LoginFacilitator().log_user_in(user)
+    return jsonify(current_user.serialize())
 
 @loginBP.route('/create-user')
 def create_user():
@@ -36,5 +36,5 @@ def create_user():
     db.session.add(newUser)
     db.session.commit()
 
-    #LoginFacilitator().log_user_in(newUser)
+    LoginFacilitator().log_user_in(newUser)
     return redirect(url_for('dashboard.dashboard'))
