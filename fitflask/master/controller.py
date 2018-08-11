@@ -20,11 +20,11 @@ def log_user_in():
 
 @masterBP.route('/user/create', methods=['POST'])
 def create_user():
-    user_name = request.args.get('username')
-    name_first = request.args.get('firstname')
-    name_last = request.args.get('lastname')
-    email = request.args.get('email')
-    password = request.args.get('password')
+    user_name = request.form.get('username')
+    name_first = request.form.get('firstname')
+    name_last = request.form.get('lastname')
+    email = request.form.get('email')
+    password = request.form.get('password')
 
     newUser = User()
     newUser.user_name = user_name
@@ -37,4 +37,4 @@ def create_user():
     db.session.commit()
 
     LoginFacilitator().log_user_in(newUser)
-    return redirect(url_for('dashboard.dashboard'))
+    return jsonify(current_user.serialize())
