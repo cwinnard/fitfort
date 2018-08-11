@@ -22,6 +22,8 @@ loginManager.init_app(app)
 
 from fitflask.master.controller import masterBP
 app.register_blueprint(masterBP)
+from fitflask.workout.controller import workoutBP
+app.register_blueprint(workoutBP)
 
 @app.route('/')
 def index():

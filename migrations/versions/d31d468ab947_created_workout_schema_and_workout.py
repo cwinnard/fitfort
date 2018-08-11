@@ -22,7 +22,7 @@ def upgrade():
     op.create_table('workout',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('id_user', sa.Integer(), nullable=False),
-    sa.Column('ts_start', sa.DateTime(), nullable=False),
+    sa.Column('ts_start', sa.DateTime(), server_default=sa.text('now()'), nullable=False),
     sa.Column('ts_finish', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['id_user'], ['master.user.id'], ),
     sa.PrimaryKeyConstraint('id'),
