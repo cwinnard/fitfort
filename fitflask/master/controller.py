@@ -5,20 +5,20 @@ from fitflask import db
 from .login_facilitator import LoginFacilitator
 from psql.schema.master import User
 
-loginBP = Blueprint('login', __name__, url_prefix='/login')
+masterBP = Blueprint('master', __name__, url_prefix='/master')
 
-@loginBP.route('/')
+@masterBP.route('/')
 def welcome():
-    return 'Hello Login!'
+    return 'Hello Master!'
 
-@loginBP.route('/login-user', methods=['POST'])
+@masterBP.route('/user/login', methods=['POST'])
 def log_user_in():
     email = request.form.get('email')
     user = User.query.filter_by(email=email).first()
     LoginFacilitator().log_user_in(user)
     return jsonify(current_user.serialize())
 
-@loginBP.route('/create-user')
+@masterBP.route('/user/create', methods=['POST'])
 def create_user():
     user_name = request.args.get('username')
     name_first = request.args.get('firstname')

@@ -20,8 +20,8 @@ def load_user(user_id):
     
 loginManager.init_app(app)
 
-from fitflask.login.controller import loginBP
-app.register_blueprint(loginBP)
+from fitflask.master.controller import masterBP
+app.register_blueprint(masterBP)
 
 @app.route('/')
 def index():
