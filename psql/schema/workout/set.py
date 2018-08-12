@@ -14,6 +14,8 @@ class Set(db.Model):
 
     def serialize(self):
         return {
+        	'id': self.id,
             'reps': self.reps,
-            'weight': self.weight
+            'weight': self.weight,
+            'exerciseId': self.id_exercise
         }

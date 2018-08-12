@@ -30,7 +30,9 @@ class Workout(db.Model):
 
     def serialize(self):
         return {
+            'id': self.id,
             'start': self.start,
             'finish': self.finish,
-            'exercises': [exercise.serialize() for exercise in self.exercises]
+            'exercises': [exercise.serialize() for exercise in self.exercises],
+            'userId': self.id_user
         }
