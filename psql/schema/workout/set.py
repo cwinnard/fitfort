@@ -11,3 +11,9 @@ class Set(db.Model):
     reps = db.Column(db.Integer, nullable=False)
     weight = db.Column(db.Integer, nullable=False)
     id_exercise = db.Column(db.Integer, db.ForeignKey('workout.exercise.id'), nullable=False)
+
+    def serialize(self):
+        return {
+            'reps': self.reps,
+            'weight': self.weight
+        }

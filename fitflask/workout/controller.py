@@ -29,3 +29,15 @@ def new_exercise():
     db.session.commit()
     return jsonify(exercise.serialize())
 
+@workoutBP.route('/set/new', methods=['POST'])
+def new_set():
+    reps = request.form.get('reps')
+    weight = request.form.get('weight')
+    exerciseId = request.form.get('exerciseId')
+    set = Set()
+    set.reps = reps
+    set.weight = weight
+    set.id_exercise = exerciseId
+    db.session.add(set)
+    db.session.commit()
+    return jsonify(set.serialize())
