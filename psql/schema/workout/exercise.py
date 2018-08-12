@@ -15,5 +15,6 @@ class Exercise(db.Model):
 
     def serialize(self):
         return {
-            'name': self.name
+            'name': self.name,
+            'sets': [set.serialize() for set in self.sets]
         }

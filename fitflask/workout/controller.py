@@ -18,6 +18,11 @@ def start():
     db.session.commit()
     return jsonify(workout.serialize())
 
+@workoutBP.route('/<int:workoutId>', methods=['GET'])
+def get_workout(workoutId):
+    workout = Workout.query.get(workoutId)
+    return jsonify(workout.serialize())
+
 @workoutBP.route('/exercise/new', methods=['POST'])
 def new_exercise():
     name = request.form.get('name')
