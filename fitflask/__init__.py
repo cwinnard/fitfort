@@ -22,6 +22,8 @@ loginManager.init_app(app)
 
 from fitflask.master.controller import masterBP
 app.register_blueprint(masterBP)
+from fitflask.summary.controller import summaryBP
+app.register_blueprint(summaryBP)
 from fitflask.workout.controller import workoutBP
 app.register_blueprint(workoutBP)
 

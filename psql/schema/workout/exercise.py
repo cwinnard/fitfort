@@ -20,3 +20,7 @@ class Exercise(db.Model):
             'sets': [set.serialize() for set in self.sets],
             'workoutId': self.id_workout
         }
+
+    @property
+    def max_weight(self):
+        return max(set.weight for set in self.sets) if self.sets else 0
