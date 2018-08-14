@@ -19,6 +19,6 @@ def get_all_workouts():
 @summaryBP.route('/records', methods=['GET'])
 def get_record_lifts():
     summarizer = Summarizer()
-    records = summarizer.get_record_lifts(current_user)
+    recordLifts = summarizer.get_record_lifts(current_user)
 
-    return jsonify(records=[record.serialize() for record in records])
+    return jsonify(recordLifts=[recordLift.serialize() for recordLift in recordLifts])
